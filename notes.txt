@@ -1,0 +1,62 @@
+> Dimensions maximales des images WebP (image-1, image-2, image-3 et image-4):
+  --> Breakpoint #1   : 300px (min) --> 250px
+  --> Breakpoint #2   : 620px (min) --> 570px
+  --> Breakpoint #3   : 768px (min) --> 270px
+
+> Modifications :
+  --> Bootstrap.css - .carousel-indicators li { .. } ligne 7685 => caractères {\9} supprimés dans : background-color: #000\9  === 4 erreurs en moins dans le terminal
+  --> Suppression des liens vers les versions minifiées qui n'existent pas.
+  --> Remplacement de jquery-2.1.0.css sur {page2.html} par le CDN : https://code.jquery.com/jquery-3.6.0.slim.min.js...   =>  
+        Modification de la ligne 197 de Blocs.js : $(window).load(function..  en  $(window).on('load', function() {   (à cause du changement de version de jQuery)
+  --> Mise en commentaire des propriétés 'speak' sur {et-line.css}
+  --> Changement de la classe white en black --> modif sur la couleur : #FFFFFF en #000  (pb contraste)
+
+> Ajouts :
+  --> Ajout d'un aria label aux a.social sur {page2.html} => nom désormais visible
+  --> Ajout de 5 propriétés "filter" sur font-awesome.css (voir .fa-flip)
+
+
+> Mots-clef initialement présents dans index.html :
+  --> seo, google, site web, site internet, agence design paris, agence design, agence design, agence design,
+      agence design,agence design,agence design,agence design,agence design,agence design"
+  --> Agence web à paris, stratégie web, web design, illustrations, design de site web, site web, web, internet, site internet, site..
+
+  src: local('../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), 
+         local('../fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), 
+         local('../fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), 
+         local('../fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), 
+         local('../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+
+> Compresser les fichiers CSS et JS :
+  --> java -jar ./compress/yuicompressor-2.4.8.jar css/bootstrap.css -o css/bootstrap.min.css --charset utf-8
+      java -jar ./compress/yuicompressor-2.4.8.jar css/et-line.css -o css/et-line.min.css --charset utf-8
+      java -jar ./compress/yuicompressor-2.4.8.jar css/font-awesome.css -o css/font-awesome.min.css --charset utf-8
+
+      java -jar ./compress/yuicompressor-2.4.8.jar js/blocs.js -o js/blocs.min.js --charset utf-8
+      java -jar ./compress/yuicompressor-2.4.8.jar js/bootstrap.js -o js/bootstrap.min.js --charset utf-8      
+      java -jar ./compress/yuicompressor-2.4.8.jar js/gmaps.js -o js/gmaps.min.js --charset utf-8      
+      ///java -jar ./compress/yuicompressor-2.4.8.jar js/jquery-2.1.0.js -o js/jquery-2.1.0.min.js --charset utf-8
+      java -jar ./compress/yuicompressor-2.4.8.jar js/jquery.touchSwipe.js -o js/jquery.touchSwipe.min.js --charset utf-8
+
+      ///java -jar ./minified/yuicompressor-2.4.8.jar ./js/formHandler.js -o ./minified/formHandler.min.js --charset utf-8
+      ///java -jar ./compress/yuicompressor-2.4.8.jar ./js/jqBootstrapValidation.js -o js/jqBootstrapValidation.min.js --charset utf-8
+
+> Nettoyer les fichiers CSS et JS
+  --> npm i -g purgecss
+  --> purgecss --css css/bootstrap.css --content *.html *.css js/*.js  -o css/bootstrap.css
+      purgecss --css css/et-line.css --content *.html *.css js/*.js  -o css/et-line.css
+      purgecss --css css/font-awesome.css --content *.html *.css js/*.js  -o css/font-awesome.css
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-174CRD58VD"></script>
+<script async>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-174CRD58VD');
+</script>
+
+Annuler le dernier commit local et distant :
+git reset --hard HEAD~1
+git revert --continue
+git push origin dev -f

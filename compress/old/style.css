@@ -1232,9 +1232,6 @@ p.img-description {
 textarea.form-control {
     width: 100%;
 }
-.bloc h2 {
-    font-size: 1rem!important;
-}
 .map {
     display: flex;
     height: 40vh;

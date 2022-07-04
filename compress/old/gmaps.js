@@ -395,7 +395,7 @@ var GMaps = (function(global) {
         };
 
         google.maps.event.clearListeners(context_menu_item, 'click');
-        google.maps.event.addDomListenerOnce(context_menu_item, 'click', assign_menu_item_action, false);
+        google.maps.event.addEventListener(context_menu_item, 'click', assign_menu_item_action, false);
       }
 
       var position = findAbsolutePosition.apply(this, [self.el]),
